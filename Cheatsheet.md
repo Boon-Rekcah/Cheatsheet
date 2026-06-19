@@ -4,8 +4,15 @@
 > `Ctrl + F` → search by **<Technology name>** (impacket, evil-winrm, smb, mssql, asrep…)
 
 ---
+# Index
 
-# Connecting to Windows - Shell
+1. [Compromised User](#Compromised_User)
+2. [Active Directory](#Active_Directory)
+3. [Connecting to Windows-Shell](#Connecting_to_Windows_Shell)
+4. [Connecting to Windows-RDP](Connecting_to_Windows_RDP)
+---
+
+# Connecting_to_Windows_Shell
 
 ## From Linux
 
@@ -72,7 +79,7 @@ netexec smb $IP -u '' -p '' --shares
 
 ---
 
-# Connecting to Windows - RDP
+# Connecting_to_Windows_RDP
 
 ### `xfreerdp` — password
 
@@ -109,7 +116,7 @@ impacket-mssqlclient User:'Password'@$IP -p 1433 -windows-auth
 
 ---
 
-# Active Directory
+# Active_Directory
 
 **Index**
 
@@ -164,7 +171,7 @@ ldapdomaindump ldaps://<DC-IP> -u 'Domain\User' -p Password1
 
 ---
 
-# Compromised User
+# Compromised_User
 
 **Index**
 
