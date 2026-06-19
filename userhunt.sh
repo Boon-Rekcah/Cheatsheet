@@ -136,7 +136,9 @@ banner "CHECK 4/10 -- MSSQL (Domain Auth, port $MSSQL_PORT)"
 run_check netexec mssql "$IP_LIST" -u "$USERNAME" "$AUTH_FLAG" "$AUTH_VALUE" --port "$MSSQL_PORT" --continue-on-success
 
 banner "CHECK 5/10 -- SMB SHARES (Domain Auth)"
-run_check netexec smb "$IP_LIST" -u "$USERNAME" "$AUTH_FLAG" "$AUTH_VALUE" --shares --continue-on-success
+# NOTE: no --continue-on-success here. NetExec ignores --shares when
+# --continue-on-success is set (see Pennyw0rth/NetExec issues #275/#964).
+run_check netexec smb "$IP_LIST" -u "$USERNAME" "$AUTH_FLAG" "$AUTH_VALUE" --shares
 
 # ====================================================================
 # LOCAL AUTH CHECKS
@@ -155,7 +157,8 @@ banner "CHECK 9/10 -- MSSQL (Local Auth, port $MSSQL_PORT)"
 run_check netexec mssql "$IP_LIST" -u "$USERNAME" "$AUTH_FLAG" "$AUTH_VALUE" --port "$MSSQL_PORT" --local-auth --continue-on-success
 
 banner "CHECK 10/10 -- SMB SHARES (Local Auth)"
-run_check netexec smb "$IP_LIST" -u "$USERNAME" "$AUTH_FLAG" "$AUTH_VALUE" --local-auth --shares --continue-on-success
+# NOTE: no --continue-on-success here (see CHECK 5 note).
+run_check netexec smb "$IP_LIST" -u "$USERNAME" "$AUTH_FLAG" "$AUTH_VALUE" --local-auth --shares
 
 # ====================================================================
 # SUMMARY -- pull the interesting lines out of the captured output
@@ -174,8 +177,10 @@ SUCCESS="$(strip_ansi < "$LOGFILE" | grep -aF '[+]' | sort -u)"
 # Admin / full compromise: NetExec appends (Pwn3d!) on those lines
 PWNED="$(strip_ansi < "$LOGFILE" | grep -aF 'Pwn3d!' | sort -u)"
 
-# Readable/writable shares from the --shares checks
-SHARES="$(strip_ansi < "$LOGFILE" | grep -aiE 'READ|WRITE' | sort -u)"
+# Readable/writable shares from the --shares checks.
+# Use word-boundary matching so the permission tokens READ / WRITE are
+# caught but words like "reading" (in connection-error lines) are not.
+SHARES="$(strip_ansi < "$LOGFILE" | grep -awE 'READ|WRITE' | sort -u)"
 
 echo ""
 echo ">>> SUCCESSFUL LOGINS <<<"
