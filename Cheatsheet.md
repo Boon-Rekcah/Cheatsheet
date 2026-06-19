@@ -10,6 +10,7 @@
 2. [Active Directory](#Active_Directory)
 3. [Connecting to Windows-Shell](#Connecting_to_Windows_Shell)
 4. [Connecting to Windows-RDP](Connecting_to_Windows_RDP)
+5. [File Transfer SMB](#File-Transfer)
 ---
 
 # Connecting_to_Windows_Shell
@@ -188,4 +189,11 @@ https://github.com/Boon-Rekcah/Cheatsheet/blob/main/userhunt.sh
 ```
 ```
 3. Run Lazagne.exe from a compromised host under new user's context
+```
+---
+
+# File-Transfer
+
+```bash
+impacket-smbserver share -smb2support /tmp/smbshare -user test -password test
 ```
