@@ -195,5 +195,7 @@ https://github.com/Boon-Rekcah/Cheatsheet/blob/main/userhunt.sh
 # File-Transfer
 
 ```bash
+mkdir -p /tmp/smbshare
+cd /tmp/smbshare
 impacket-smbserver share -smb2support /tmp/smbshare -user test -password test
 ```
