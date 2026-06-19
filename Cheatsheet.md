@@ -161,3 +161,24 @@ netexec smb <> -u mscott -p Windows1 --users 2>/dev/null | awk {'print $5'} | gr
 ```bash
 ldapdomaindump ldaps://<DC-IP> -u 'Domain\User' -p Password1
 ```
+
+---
+
+# Compromised User
+
+**Index**
+
+1. [Checks](#User_Hunting)
+
+## User_Hunting
+
+```bash
+1. Use netexec to test on all IPs each protocol (SMB, Winrm, RDP, MSSQL, --Shares) with new compromised user.
+https://github.com/Boon-Rekcah/Cheatsheet/blob/main/userhunt.sh
+```
+```bash
+2. Run Snaffler.exe from a compromised host under new user's context
+```
+```
+3. Run Lazagne.exe from a compromised host under new user's context
+```
