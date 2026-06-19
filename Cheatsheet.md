@@ -7,13 +7,13 @@
 # Index
 
 1. [Compromised User](#Compromised_User)
-2. [Active Directory](#Active_Directory)
-3. [Connecting to Windows-Shell](#Connecting_to_Windows_Shell)
-4. [Connecting to Windows-RDP](Connecting_to_Windows_RDP)
+2. [Active Directory](#Active-Directory)
+3. [Connecting to Windows-Shell](#Connecting-to-Windows-Shell)
+4. [Connecting to Windows-RDP](Connecting-to-Windows-RDP)
 5. [File Transfer SMB](#File-Transfer)
 ---
 
-# Connecting_to_Windows_Shell
+# Connecting-to-Windows-Shell
 
 ## From Linux
 
@@ -80,7 +80,7 @@ netexec smb $IP -u '' -p '' --shares
 
 ---
 
-# Connecting_to_Windows_RDP
+# Connecting-to-Windows-RDP
 
 ### `xfreerdp` — password
 
@@ -117,7 +117,7 @@ impacket-mssqlclient User:'Password'@$IP -p 1433 -windows-auth
 
 ---
 
-# Active_Directory
+# Active-Directory
 
 **Index**
 
@@ -185,7 +185,7 @@ ldapdomaindump ldaps://<DC-IP> -u 'Domain\User' -p Password1
 https://github.com/Boon-Rekcah/Cheatsheet/blob/main/userhunt.sh
 ```
 ```bash
-2. Run Snaffler.exe from a compromised host under new user's context
+2. Run NetExec Spider from a compromised host under new user's context
 ```
 ```
 3. Run Lazagne.exe from a compromised host under new user's context
